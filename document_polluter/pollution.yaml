@@ -9,8 +9,29 @@ gender:
     - female: woman
       male: man
 
+    - female: women
+      male: men
+
+    - female: womans
+      male: mans
+
+    - female: women's
+      male: men's
+
+    - female: females
+      male: males
+
+    - female: woman's
+      male: man's
+
     - female: daughter
       male: son
+
+    - female: daughter's
+      male: son's
+
+    - female: daughters
+      male: sons
 
     - female: herself
       male: himself
