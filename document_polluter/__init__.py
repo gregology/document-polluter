@@ -37,11 +37,13 @@ class DocumentPolluter(object):
       raise DocumentPolluterError('genre does not exist')
     self.genre = genre
     self.fungibles = POLLUTION[genre]['fungibles']
+    self.all_polluting_terms = sum([list(f.values()) for f in self.fungibles], [])
     self.clusters = clusters(genre)
+
+    self.documents = documents
 
     self.eligible_documents = []
     self.ineligible_documents = []
-    self.documents = documents
 
     self.__set_document_eligibility()
 
@@ -64,14 +66,22 @@ class DocumentPolluter(object):
 
   def __set_document_eligibility(self):
     for document in self.documents:
-      if self.__document_contains_non_fungible_terms(document):
+      if self.__document_contains_non_fungible_terms(document.lower()) or not self.__document_contains_polluting_terms(document.lower()):
         self.ineligible_documents.append(document.lower())
       else:
         self.eligible_documents.append(document.lower())
 
   def __document_contains_non_fungible_terms(self, document):
     for non_fungible_term in POLLUTION[self.genre]['non-fungible-terms']:
-      return bool(re.search(r'\b' + non_fungible_term + r'\b', document))
+      if bool(re.search(r'\b' + non_fungible_term + r'\b', document)):
+        return True
+    return False
+
+  def __document_contains_polluting_terms(self, document):
+    for term in self.all_polluting_terms:
+      if bool(re.search(r'\b' + term + r'\b', document)):
+        return True
+    return False
 
   def __replace_words(self, document, dic):
     for replacable_word, replacement_word in dic.items():

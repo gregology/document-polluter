@@ -14,7 +14,7 @@ class TestFunctions(unittest.TestCase):
 
   def test_existing_cluster(self):
     actual = clusters('gender')
-    expected = ['female', 'male', 'non-gendered']
+    expected = ['female', 'male']
     self.assertTrue(sorted(actual) == sorted(expected))
 
   def test_non_existant_cluster(self):
@@ -34,8 +34,8 @@ class TestFunctions(unittest.TestCase):
 
   def test_existing_fungibles(self):
     actual = fungibles('gender')
-    first = {'female': 'she', 'male': 'he', 'non-gendered': 'they'}
-    last = {'female': 'grandmothers', 'male': 'grandfathers', 'non-gendered': 'grandparents'}
+    first = {'female': 'she', 'male': 'he'}
+    last = {'female': 'grandmothers', 'male': 'grandfathers'}
 
     self.assertTrue(len(actual) == 12)
     self.assertTrue(actual[0] == first)
@@ -60,16 +60,14 @@ class TestDocumentPolluter(unittest.TestCase):
     self.assertTrue(dp.eligible_documents == ['he is'])
 
   def test_generates_polluted_documents(self):
-    documents =              ['she shouted',  'my son',      'the parent']
-    expected_female =        ['she shouted',  'my daughter', 'the mother']
-    expected_male =          ['he shouted',   'my son',      'the father']
-    expected_non_gendered =  ['they shouted', 'my child',    'the parent']
+    documents =              ['she shouted',  'my son']
+    expected_female =        ['she shouted',  'my daughter']
+    expected_male =          ['he shouted',   'my son']
 
     dp = DocumentPolluter(documents=documents, genre='gender')
 
     self.assertTrue(sorted(dp.polluted_documents['female']) == sorted(expected_female))
     self.assertTrue(sorted(dp.polluted_documents['male']) == sorted(expected_male))
-    self.assertTrue(sorted(dp.polluted_documents['non-gendered']) == sorted(expected_non_gendered))
 
   def test_multiple_word_documents_polluted(self):
     documents =       ['she was a mother to my sister']
@@ -102,14 +100,19 @@ class TestDocumentPolluter(unittest.TestCase):
     self.assertTrue(sorted(dp.polluted_documents['male']) == sorted(expected_male))
 
   def test_parts_of_words_not_polluted(self):
-    documents =       ['SHEd HEad']
-    expected_female = ['shed head']
-    expected_male =   ['shed head']
+    documents =       ['she SHEd HEad']
+    expected_female = ['she shed head']
+    expected_male =   ['he shed head']
 
     dp = DocumentPolluter(documents=documents, genre='gender')
 
     self.assertTrue(sorted(dp.polluted_documents['female']) == sorted(expected_female))
     self.assertTrue(sorted(dp.polluted_documents['male']) == sorted(expected_male))
+
+  def test_documents_with_no_polluting_terms_non_eligible(self):
+    documents = ['no gendered words']
+    dp = DocumentPolluter(documents=documents, genre='gender')
+    self.assertTrue(dp.ineligible_documents == documents)
 
 if __name__ == '__main__':
   unittest.main()
