@@ -4,6 +4,8 @@
 
 Document Polluter replaces gendered words in documents to create test data for machine learning models in order to identify bias.
 
+Checkout the examples in the [interactive notebook](https://mybinder.org/v2/gh/gregology/document-polluter/notebook).
+
 ## Installation
 
 `document-polluter` is available on PyPI
