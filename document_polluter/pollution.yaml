@@ -12,6 +12,9 @@ gender:
     - female: women
       male: men
 
+    - female: womens
+      male: mens
+
     - female: womans
       male: mans
 

@@ -37,7 +37,7 @@ class TestFunctions(unittest.TestCase):
     first = {'female': 'she', 'male': 'he'}
     last = {'female': 'grandmothers', 'male': 'grandfathers'}
 
-    self.assertTrue(len(actual) == 21)
+    self.assertTrue(len(actual) == 22)
     self.assertTrue(actual[0] == first)
     self.assertTrue(actual[-1] == last)
 
