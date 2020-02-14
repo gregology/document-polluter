@@ -24,7 +24,7 @@ class TestFunctions(unittest.TestCase):
 
   def test_existing_non_fungible_terms(self):
     actual = non_fungible_terms('gender')
-    expected = ['his', 'hers']
+    expected = ['her', 'hers', 'him', 'his']
     self.assertTrue(sorted(actual) == sorted(expected))
 
   def test_non_existant_non_fungible_terms(self):
