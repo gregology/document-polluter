@@ -9,7 +9,7 @@ from document_polluter import DocumentPolluterError, DocumentPolluter, genres, c
 class TestFunctions(unittest.TestCase):
   def test_genres(self):
     actual = genres()
-    expected = ['gender']
+    expected = ['gender', 'us-race']
     self.assertTrue(actual == expected)
 
   def test_existing_cluster(self):
@@ -37,7 +37,7 @@ class TestFunctions(unittest.TestCase):
     first = {'female': 'she', 'male': 'he'}
     last = {'female': 'grandmothers', 'male': 'grandfathers'}
 
-    self.assertTrue(len(actual) == 12)
+    self.assertTrue(len(actual) == 14)
     self.assertTrue(actual[0] == first)
     self.assertTrue(actual[-1] == last)
 

@@ -3,6 +3,12 @@ gender:
     - female: she
       male: he
 
+    - female: female
+      male: male
+
+    - female: woman
+      male: man
+
     - female: daughter
       male: son
 
@@ -41,3 +47,14 @@ gender:
     - hers
     - her
     - him
+
+us-race:
+  fungibles:
+    - asian: asian
+    - black: black
+    - latino: latino
+    - white: white
+
+  non-fungible-terms:
+    - color
+    - colour
