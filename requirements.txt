@@ -1,3 +1,3 @@
-document-polluter==0.0.2
+document-polluter==0.0.3
 tweepy==3.8.0
 pyyaml==5.3
