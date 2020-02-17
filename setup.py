@@ -5,7 +5,7 @@ with open('README.md') as f:
 
 setup(
     name='document-polluter',
-    version='0.0.6',
+    version='0.0.7',
     description='Pollutes documents with terms biased on specific geners',
     long_description=long_description,
     long_description_content_type='text/markdown',

@@ -75,9 +75,9 @@ gender:
 us-race:
   fungibles:
     - asian: asian
-    - black: black
-    - latino: latino
-    - white: white
+      black: black
+      latino: latino
+      white: white
 
   non-fungible-terms:
     - color
