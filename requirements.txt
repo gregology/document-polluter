@@ -1,5 +1,8 @@
 document-polluter==0.0.7
 tweepy==3.8.0
 pyyaml==5.3
-requests==2.22.0
+requests==2.23.0
 statistics==1.0.3.5
+scipy==1.4.1
+numpy==1.18.1
+lxml==4.5.0
